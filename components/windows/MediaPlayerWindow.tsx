@@ -6,130 +6,59 @@ interface Track {
   id: number;
   title: string;
   artist: string;
-  duration: string;
-  durationSeconds: number;
   album: string;
   year: string;
   genre: string;
+  audioSrc: string;
   coverStyle: {
     bg: string;
     artType: 'daftpunk' | 'lenka' | 'coldplay';
     accentColor: string;
   };
-  melody: Array<{ note: number; dur: number; bass?: number }>;
 }
 
 const TRACKS: Track[] = [
   {
     id: 1,
-    title: 'Verdis Quo',
+    title: 'Veridis Quo',
     artist: 'Daft Punk',
-    duration: '3:57',
-    durationSeconds: 237,
     album: 'Discovery',
     year: '2001',
     genre: 'Electronic / French House',
+    audioSrc: '/Daft Punk - Veridis Quo (Official Audio).mp3',
     coverStyle: {
       bg: 'linear-gradient(135deg, #050510 0%, #150025 50%, #001020 100%)',
       artType: 'daftpunk',
       accentColor: '#e040fb',
     },
-    melody: [
-      { note: 440.00, dur: 0.36, bass: 110.00 }, // A4, A2
-      { note: 523.25, dur: 0.36, bass: 110.00 }, // C5
-      { note: 659.25, dur: 0.36, bass: 110.00 }, // E5
-      { note: 880.00, dur: 0.72, bass: 110.00 }, // A5
-      { note: 783.99, dur: 0.36, bass: 110.00 }, // G5
-      { note: 659.25, dur: 0.36, bass: 110.00 }, // E5
-      { note: 523.25, dur: 0.72, bass: 110.00 }, // C5
-      { note: 392.00, dur: 0.36, bass: 98.00 },  // G4, G2
-      { note: 493.88, dur: 0.36, bass: 98.00 },  // B4
-      { note: 587.33, dur: 0.36, bass: 98.00 },  // D5
-      { note: 783.99, dur: 0.72, bass: 98.00 },  // G5
-      { note: 659.25, dur: 0.36, bass: 98.00 },  // E5
-      { note: 587.33, dur: 0.36, bass: 98.00 },  // D5
-      { note: 493.88, dur: 0.72, bass: 98.00 },  // B4
-      { note: 349.23, dur: 0.36, bass: 87.31 },  // F4, F2
-      { note: 440.00, dur: 0.36, bass: 87.31 },  // A4
-      { note: 523.25, dur: 0.36, bass: 87.31 },  // C5
-      { note: 698.46, dur: 0.72, bass: 87.31 },  // F5
-      { note: 659.25, dur: 0.36, bass: 87.31 },  // E5
-      { note: 523.25, dur: 0.36, bass: 87.31 },  // C5
-      { note: 440.00, dur: 0.72, bass: 87.31 },  // A4
-      { note: 329.63, dur: 0.36, bass: 82.41 },  // E4, E2
-      { note: 392.00, dur: 0.36, bass: 82.41 },  // G4
-      { note: 493.88, dur: 0.36, bass: 82.41 },  // B4
-      { note: 659.25, dur: 0.72, bass: 82.41 },  // E5
-    ],
   },
   {
     id: 2,
-    title: 'Everything at Once',
+    title: 'Everything At Once',
     artist: 'Lenka',
-    duration: '2:38',
-    durationSeconds: 158,
     album: 'Two',
     year: '2011',
     genre: 'Indie Pop / Quirky Pop',
+    audioSrc: '/Lenka - Everything At Once (Official Video).mp3',
     coverStyle: {
       bg: 'linear-gradient(135deg, #fff2cc 0%, #ffd6d6 50%, #d8f3dc 100%)',
       artType: 'lenka',
       accentColor: '#ff4081',
     },
-    melody: [
-      { note: 329.63, dur: 0.24, bass: 164.81 }, // E4, E3
-      { note: 329.63, dur: 0.24, bass: 164.81 }, // E4
-      { note: 369.99, dur: 0.24, bass: 164.81 }, // F#4
-      { note: 392.00, dur: 0.48, bass: 164.81 }, // G4
-      { note: 329.63, dur: 0.24, bass: 164.81 }, // E4
-      { note: 392.00, dur: 0.24, bass: 164.81 }, // G4
-      { note: 440.00, dur: 0.48, bass: 220.00 }, // A4, A3
-      { note: 392.00, dur: 0.24, bass: 164.81 }, // G4
-      { note: 369.99, dur: 0.24, bass: 164.81 }, // F#4
-      { note: 329.63, dur: 0.48, bass: 164.81 }, // E4
-      { note: 293.66, dur: 0.24, bass: 146.83 }, // D4, D3
-      { note: 329.63, dur: 0.48, bass: 164.81 }, // E4
-      { note: 392.00, dur: 0.24, bass: 164.81 }, // G4
-      { note: 440.00, dur: 0.24, bass: 220.00 }, // A4, A3
-      { note: 493.88, dur: 0.48, bass: 246.94 }, // B4, B3
-      { note: 440.00, dur: 0.24, bass: 220.00 }, // A4
-      { note: 392.00, dur: 0.24, bass: 164.81 }, // G4
-      { note: 329.63, dur: 0.72, bass: 164.81 }, // E4
-    ],
   },
   {
     id: 3,
-    title: 'Adventure of a Lifetime',
+    title: 'Adventure Of A Lifetime',
     artist: 'Coldplay',
-    duration: '4:18',
-    durationSeconds: 258,
     album: 'A Head Full of Dreams',
     year: '2015',
-    genre: 'Disco Pop / Alternative',
+    genre: 'Disco Pop / Alternative Rock',
+    audioSrc: '/Coldplay - Adventure Of A Lifetime (Audio).mp3',
     coverStyle: {
       bg: 'linear-gradient(135deg, #091a3a 0%, #1a0b2e 50%, #002244 100%)',
       artType: 'coldplay',
       accentColor: '#00e5ff',
     },
-    melody: [
-      // Iconic Jonny Buckland upbeat guitar/synth disco riff
-      { note: 587.33, dur: 0.20, bass: 146.83 }, // D5, D3
-      { note: 659.25, dur: 0.20, bass: 146.83 }, // E5
-      { note: 739.99, dur: 0.20, bass: 146.83 }, // F#5
-      { note: 880.00, dur: 0.40, bass: 146.83 }, // A5
-      { note: 739.99, dur: 0.20, bass: 146.83 }, // F#5
-      { note: 659.25, dur: 0.20, bass: 146.83 }, // E5
-      { note: 587.33, dur: 0.40, bass: 146.83 }, // D5
-      { note: 493.88, dur: 0.20, bass: 123.47 }, // B4, B2
-      { note: 587.33, dur: 0.20, bass: 123.47 }, // D5
-      { note: 659.25, dur: 0.40, bass: 123.47 }, // E5
-      { note: 739.99, dur: 0.20, bass: 164.81 }, // F#5, E3
-      { note: 880.00, dur: 0.20, bass: 164.81 }, // A5
-      { note: 987.77, dur: 0.40, bass: 164.81 }, // B5
-      { note: 880.00, dur: 0.20, bass: 164.81 }, // A5
-      { note: 739.99, dur: 0.20, bass: 164.81 }, // F#5
-      { note: 659.25, dur: 0.60, bass: 146.83 }, // E5, D3
-    ],
   },
 ];
 
@@ -137,163 +66,121 @@ export default function MediaPlayerWindow() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [volume, setVolume] = useState(0.75);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(0.85);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const gainNodeRef = useRef<GainNode | null>(null);
-  const noteIdxRef = useRef<number>(0);
-  const isPlayingRef = useRef<boolean>(false);
-  const currentTrackRef = useRef<number>(0);
-  const volumeRef = useRef<number>(0.75);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const clockTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const activeSong = TRACKS[currentTrack];
+
+  // Sync volume with audio element
   useEffect(() => {
-    isPlayingRef.current = isPlaying;
-    currentTrackRef.current = currentTrack;
-    volumeRef.current = volume;
-  }, [isPlaying, currentTrack, volume]);
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
 
-  // Ensure AudioContext is ready
-  const initAudio = () => {
-    if (typeof window === 'undefined') return null;
-    if (!audioCtxRef.current) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (AudioCtx) {
-        audioCtxRef.current = new AudioCtx();
-        const masterGain = audioCtxRef.current.createGain();
-        masterGain.gain.setValueAtTime(volumeRef.current * 0.25, audioCtxRef.current.currentTime);
-        masterGain.connect(audioCtxRef.current.destination);
-        gainNodeRef.current = masterGain;
+  // Handle track change
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = activeSong.audioSrc;
+      audioRef.current.load();
+      if (isPlaying) {
+        setIsLoading(true);
+        audioRef.current
+          .play()
+          .then(() => setIsLoading(false))
+          .catch((err) => {
+            console.warn('Playback error:', err);
+            setIsLoading(false);
+          });
       }
     }
-    if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
-    }
-    return audioCtxRef.current;
-  };
-
-  // Play next synthesized note in a robust recursive loop
-  const playStep = () => {
-    if (!isPlayingRef.current) return;
-    const ctx = initAudio();
-    if (!ctx || !gainNodeRef.current) return;
-
-    const track = TRACKS[currentTrackRef.current];
-    const notes = track.melody;
-    if (!notes || notes.length === 0) return;
-
-    const step = notes[noteIdxRef.current % notes.length];
-    noteIdxRef.current = (noteIdxRef.current + 1) % notes.length;
-
-    const now = ctx.currentTime;
-
-    // Lead melody oscillator
-    const osc = ctx.createOscillator();
-    const noteGain = ctx.createGain();
-
-    if (track.coverStyle.artType === 'daftpunk') {
-      osc.type = 'sawtooth';
-    } else if (track.coverStyle.artType === 'coldplay') {
-      osc.type = 'triangle';
-    } else {
-      osc.type = 'sine';
-    }
-
-    osc.frequency.setValueAtTime(step.note, now);
-
-    noteGain.gain.setValueAtTime(0.001, now);
-    noteGain.gain.linearRampToValueAtTime(volumeRef.current * 0.22, now + 0.03);
-    noteGain.gain.exponentialRampToValueAtTime(0.001, now + step.dur * 0.92);
-
-    osc.connect(noteGain);
-    noteGain.connect(gainNodeRef.current);
-
-    osc.start(now);
-    osc.stop(now + step.dur);
-
-    // Sub-bass layer
-    if (step.bass) {
-      const bassOsc = ctx.createOscillator();
-      const bassGain = ctx.createGain();
-
-      bassOsc.type = 'sine';
-      bassOsc.frequency.setValueAtTime(step.bass, now);
-
-      bassGain.gain.setValueAtTime(0.001, now);
-      bassGain.gain.linearRampToValueAtTime(volumeRef.current * 0.18, now + 0.04);
-      bassGain.gain.exponentialRampToValueAtTime(0.001, now + step.dur * 0.9);
-
-      bassOsc.connect(bassGain);
-      bassGain.connect(gainNodeRef.current);
-
-      bassOsc.start(now);
-      bassOsc.stop(now + step.dur);
-    }
-
-    // Schedule next beat
-    if (isPlayingRef.current) {
-      timerRef.current = setTimeout(playStep, step.dur * 1000);
-    }
-  };
-
-  const startPlayback = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    initAudio();
-    setIsPlaying(true);
-    isPlayingRef.current = true;
-    noteIdxRef.current = 0;
-    playStep();
-
-    if (clockTimerRef.current) clearInterval(clockTimerRef.current);
-    clockTimerRef.current = setInterval(() => {
-      setCurrentTime(prev => prev + 1);
-    }, 1000);
-  };
-
-  const stopPlayback = () => {
-    setIsPlaying(false);
-    isPlayingRef.current = false;
-    if (timerRef.current) clearTimeout(timerRef.current);
-    if (clockTimerRef.current) clearInterval(clockTimerRef.current);
-  };
+  }, [currentTrack]);
 
   const togglePlay = () => {
+    if (!audioRef.current) return;
+
     if (isPlaying) {
-      stopPlayback();
+      audioRef.current.pause();
+      setIsPlaying(false);
     } else {
-      startPlayback();
+      setIsLoading(true);
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.warn('Playback error:', err);
+          setIsLoading(false);
+        });
     }
   };
 
   const handleSelectTrack = (idx: number) => {
-    stopPlayback();
     setCurrentTrack(idx);
-    currentTrackRef.current = idx;
-    setCurrentTime(0);
-    setTimeout(() => {
-      startPlayback();
-    }, 100);
+    setIsPlaying(true);
   };
 
-  const handleVolumeChange = (newVol: number) => {
-    setVolume(newVol);
-    volumeRef.current = newVol;
-    if (gainNodeRef.current && audioCtxRef.current) {
-      gainNodeRef.current.gain.setValueAtTime(newVol * 0.25, audioCtxRef.current.currentTime);
+  const handleNext = () => {
+    setCurrentTrack((prev) => (prev + 1) % TRACKS.length);
+    setIsPlaying(true);
+  };
+
+  const handlePrev = () => {
+    setCurrentTrack((prev) => (prev - 1 + TRACKS.length) % TRACKS.length);
+    setIsPlaying(true);
+  };
+
+  const handleStop = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsPlaying(false);
+    setCurrentTime(0);
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = parseFloat(e.target.value);
+    setCurrentTime(newTime);
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
     }
   };
 
   const formatSec = (sec: number) => {
+    if (isNaN(sec) || sec === 0) return '0:00';
     const m = Math.floor(sec / 60);
     const s = Math.floor(sec % 60);
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  const activeSong = TRACKS[currentTrack];
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#0a1020', color: '#88aadd' }}>
+      {/* Hidden Audio Element */}
+      <audio
+        ref={audioRef}
+        src={activeSong.audioSrc}
+        onTimeUpdate={() => {
+          if (audioRef.current) {
+            setCurrentTime(audioRef.current.currentTime);
+          }
+        }}
+        onLoadedMetadata={() => {
+          if (audioRef.current) {
+            setDuration(audioRef.current.duration);
+          }
+        }}
+        onEnded={handleNext}
+        onError={() => {
+          setIsLoading(false);
+        }}
+      />
+
       {/* Media Player Top Chrome */}
       <div style={{
         background: 'linear-gradient(180deg, #1d3356 0%, #0d1e38 100%)',
@@ -324,7 +211,7 @@ export default function MediaPlayerWindow() {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        padding: 12,
+        padding: 10,
       }}>
         {/* Glow ambient background based on active track accent */}
         <div style={{
@@ -394,12 +281,12 @@ export default function MediaPlayerWindow() {
                 borderRadius: 3,
                 zIndex: 1,
               }}>
-                VERDIS QUO
+                VERIDIS QUO
               </div>
             </div>
           )}
 
-          {/* Lenka — Two (Everything at Once) Album Cover Art */}
+          {/* Lenka — Two (Everything At Once) Album Cover Art */}
           {activeSong.coverStyle.artType === 'lenka' && (
             <div style={{
               width: '100%',
@@ -439,7 +326,7 @@ export default function MediaPlayerWindow() {
                 padding: '1px 8px',
                 borderRadius: 10,
               }}>
-                Two • Everything at Once
+                Two • Everything At Once
               </div>
             </div>
           )}
@@ -496,14 +383,14 @@ export default function MediaPlayerWindow() {
                 textTransform: 'uppercase',
                 fontWeight: '600',
               }}>
-                A Head Full of Dreams
+                Adventure Of A Lifetime
               </div>
             </div>
           )}
         </div>
 
         {/* Track Title Info */}
-        <div style={{ zIndex: 1, marginTop: 12, textAlign: 'center' }}>
+        <div style={{ zIndex: 1, marginTop: 10, textAlign: 'center' }}>
           <div style={{
             color: '#ffffff',
             fontWeight: 'bold',
@@ -518,14 +405,26 @@ export default function MediaPlayerWindow() {
           <div style={{ color: '#88aadd', fontSize: 10, marginTop: 2 }}>
             {activeSong.album} ({activeSong.year}) • {activeSong.genre}
           </div>
-          <div style={{
-            color: isPlaying ? '#00ff88' : '#888',
-            fontSize: 10,
-            marginTop: 4,
-            fontWeight: 'bold',
-          }}>
-            {isPlaying ? `● Playing (${formatSec(currentTime)} / ${activeSong.duration})` : `⏸ Stopped (${activeSong.duration})`}
-          </div>
+        </div>
+
+        {/* Track Progress Seek Bar */}
+        <div style={{ width: '88%', marginTop: 8, zIndex: 1, display: 'flex', alignItems: 'center', gap: 8, fontSize: 10, color: '#6fa0e8' }}>
+          <span>{formatSec(currentTime)}</span>
+          <input
+            type="range"
+            min="0"
+            max={duration || 100}
+            step="0.5"
+            value={currentTime}
+            onChange={handleSeek}
+            style={{
+              flex: 1,
+              height: 4,
+              cursor: 'pointer',
+              accentColor: activeSong.coverStyle.accentColor,
+            }}
+          />
+          <span>{formatSec(duration)}</span>
         </div>
       </div>
 
@@ -540,7 +439,7 @@ export default function MediaPlayerWindow() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <button
               className="xp-button"
-              onClick={() => handleSelectTrack((currentTrack - 1 + TRACKS.length) % TRACKS.length)}
+              onClick={handlePrev}
               style={{ padding: '2px 8px' }}
               title="Previous Track"
             >
@@ -556,11 +455,11 @@ export default function MediaPlayerWindow() {
               }}
               title={isPlaying ? 'Pause' : 'Play'}
             >
-              {isPlaying ? '⏸️ Pause' : '▶️ Play'}
+              {isLoading ? '⏳' : isPlaying ? '⏸️ Pause' : '▶️ Play'}
             </button>
             <button
               className="xp-button"
-              onClick={() => handleSelectTrack((currentTrack + 1) % TRACKS.length)}
+              onClick={handleNext}
               style={{ padding: '2px 8px' }}
               title="Next Track"
             >
@@ -568,7 +467,7 @@ export default function MediaPlayerWindow() {
             </button>
             <button
               className="xp-button"
-              onClick={() => { stopPlayback(); setCurrentTime(0); }}
+              onClick={handleStop}
               style={{ padding: '2px 8px' }}
               title="Stop"
             >
@@ -585,7 +484,7 @@ export default function MediaPlayerWindow() {
               max="1"
               step="0.05"
               value={volume}
-              onChange={e => handleVolumeChange(parseFloat(e.target.value))}
+              onChange={(e) => setVolume(parseFloat(e.target.value))}
               style={{ width: 70, cursor: 'pointer' }}
             />
             <span>{Math.round(volume * 100)}%</span>
@@ -624,7 +523,7 @@ export default function MediaPlayerWindow() {
                   {t.title} — <span style={{ opacity: 0.75 }}>{t.artist}</span>
                 </span>
               </div>
-              <span style={{ fontSize: 10, opacity: 0.7 }}>{t.duration}</span>
+              <span style={{ fontSize: 10, opacity: 0.7 }}>MP3</span>
             </div>
           ))}
         </div>
