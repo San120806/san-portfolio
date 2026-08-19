@@ -1,26 +1,494 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url('https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap');
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Tahoma', 'MS Sans Serif', Arial, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* XP Window Chrome */
+.xp-window {
+  border: 2px solid #003c74;
+  border-radius: 8px 8px 4px 4px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.3);
+  overflow: hidden;
+  position: absolute;
+  min-width: 200px;
+  min-height: 100px;
+}
+
+.xp-titlebar {
+  background: linear-gradient(180deg, #1d6ad4 0%, #0047c0 40%, #0055ea 50%, #0047c0 100%);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+  height: 28px;
+}
+
+.xp-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-titlebar-title {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  white-space: nowrap;
+}
+
+.xp-titlebar-buttons {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.xp-btn-minimize,
+.xp-btn-maximize,
+.xp-btn-close {
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.xp-btn-minimize {
+  background: linear-gradient(180deg, #7ab2f5 0%, #3478d4 100%);
+}
+
+.xp-btn-maximize {
+  background: linear-gradient(180deg, #7ab2f5 0%, #3478d4 100%);
+}
+
+.xp-btn-close {
+  background: linear-gradient(180deg, #f5827a 0%, #d43428 100%);
+}
+
+.xp-btn-minimize:hover,
+.xp-btn-maximize:hover {
+  background: linear-gradient(180deg, #9bc4f7 0%, #5090e0 100%);
+}
+
+.xp-btn-close:hover {
+  background: linear-gradient(180deg, #f79e96 0%, #e04040 100%);
+}
+
+.xp-window-body {
+  background: #ece9d8;
+  overflow: auto;
+}
+
+/* XP Scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d4d0c8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e8e4d8 0%, #c0bdb5 50%, #b0ada5 100%);
+  border: 1px solid #888;
+}
+
+::-webkit-scrollbar-button {
+  background: #d4d0c8;
+  border: 1px solid #888;
+  height: 16px;
+}
+
+/* XP Button */
+.xp-button {
+  background: linear-gradient(180deg, #f5f3ee 0%, #dbd7cc 40%, #ccc8bc 100%);
+  border: 1px solid #8a8a8a;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  padding: 2px 8px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  color: #000;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.8);
+}
+
+.xp-button:hover {
+  background: linear-gradient(180deg, #fff9f0 0%, #ece5d8 40%, #ddd5c5 100%);
+}
+
+.xp-button:active {
+  background: linear-gradient(180deg, #ccc8bc 0%, #dbd7cc 100%);
+  border-top-color: #8a8a8a;
+  border-left-color: #8a8a8a;
+  border-bottom-color: #ffffff;
+  border-right-color: #ffffff;
+}
+
+/* XP Input */
+.xp-input {
+  border: 2px inset #7f9db9;
+  background: white;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  padding: 2px 4px;
+  outline: none;
+  width: 100%;
+}
+
+.xp-input:focus {
+  border-color: #3169c4;
+}
+
+/* XP Textarea */
+.xp-textarea {
+  border: 2px inset #7f9db9;
+  background: white;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  padding: 4px;
+  outline: none;
+  resize: none;
+  width: 100%;
+}
+
+/* Desktop icon */
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 3px;
+  width: 80px;
+  text-align: center;
+}
+
+.desktop-icon:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.desktop-icon.selected {
+  background: rgba(49, 105, 196, 0.5);
+}
+
+.desktop-icon span {
+  color: white;
+  font-size: 11px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Taskbar */
+.xp-taskbar {
+  background: linear-gradient(180deg, #2462c8 0%, #1551b5 8%, #1255c0 50%, #0f4db0 51%, #1357c0 100%);
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  border-top: 1px solid #6fa0e8;
+}
+
+.xp-start-btn {
+  background: linear-gradient(180deg, #5ba832 0%, #3d8a1e 50%, #3a8018 100%);
+  border-radius: 0 12px 12px 0;
+  padding: 4px 14px 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  height: 36px;
+  margin-right: 4px;
+  border: 1px solid #2d6010;
+  border-left: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.xp-start-btn:hover {
+  background: linear-gradient(180deg, #6dc03c 0%, #4a9e25 50%, #47941e 100%);
+}
+
+.xp-start-btn span {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+.taskbar-task {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: linear-gradient(180deg, #1e5ab8 0%, #2a6acc 100%);
+  border: 1px solid #1a4a9a;
+  border-radius: 3px;
+  cursor: pointer;
+  color: white;
+  font-size: 11px;
+  max-width: 160px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 28px;
+  min-width: 80px;
+}
+
+.taskbar-task:hover {
+  background: linear-gradient(180deg, #2868d0 0%, #3478e0 100%);
+}
+
+.taskbar-task.active {
+  background: linear-gradient(180deg, #1248a0 0%, #1a58bc 100%);
+  border-color: #0a3888;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* System tray */
+.xp-tray {
+  background: linear-gradient(180deg, #0b50b0 0%, #1464c8 100%);
+  border-left: 1px solid #1a5cc0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 6px;
+  margin-left: auto;
+  min-width: 80px;
+  justify-content: flex-end;
+}
+
+.xp-tray-clock {
+  color: white;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Start Menu */
+.xp-start-menu {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  width: 380px;
+  background: white;
+  border: 2px solid #003c74;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 4px 0 8px rgba(0,0,0,0.5);
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.xp-start-menu-header {
+  background: linear-gradient(90deg, #1d6ad4 0%, #3d8eee 100%);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.xp-start-menu-name {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.xp-start-menu-body {
+  display: flex;
+  height: 340px;
+}
+
+.xp-start-menu-left {
+  width: 55%;
+  border-right: 1px solid #d4d0c8;
+  padding: 4px 0;
+}
+
+.xp-start-menu-right {
+  width: 45%;
+  background: #d9e8ff;
+  padding: 4px 0;
+}
+
+.xp-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.xp-menu-item:hover {
+  background: #316ac5;
+  color: white;
+}
+
+.xp-menu-separator {
+  height: 1px;
+  background: #d4d0c8;
+  margin: 4px 0;
+}
+
+.xp-start-menu-footer {
+  background: #d4d0c8;
+  border-top: 1px solid #b0aba0;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Login Screen */
+.xp-login-bg {
+  background: #4a6fb5;
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(100,140,220,0.3) 0%, transparent 70%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.03) 2px,
+      rgba(255,255,255,0.03) 4px
+    );
+}
+
+/* XP Explorer Toolbar */
+.xp-toolbar {
+  background: linear-gradient(180deg, #f5f3ee 0%, #e8e4d8 100%);
+  border-bottom: 1px solid #aba99a;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.xp-toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #000;
+}
+
+.xp-toolbar-btn:hover {
+  background: linear-gradient(180deg, #f0e8c0 0%, #d8c870 100%);
+  border: 1px solid #c0a830;
+}
+
+/* Address bar */
+.xp-addressbar {
+  background: linear-gradient(180deg, #f5f3ee 0%, #e8e4d8 100%);
+  border-bottom: 1px solid #aba99a;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+/* About Me IE style sidebar */
+.xp-sidebar-panel {
+  background: linear-gradient(180deg, #dce8ff 0%, #c8d8f8 100%);
+  border-right: 1px solid #a0b8e0;
+  width: 170px;
+  flex-shrink: 0;
+}
+
+.xp-sidebar-section-header {
+  background: linear-gradient(180deg, #6694d8 0%, #4878c8 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Messenger chat bubble */
+.messenger-bubble-incoming {
+  background: #f0f0f0;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 11px;
+  max-width: 85%;
+}
+
+.messenger-bubble-outgoing {
+  background: #ddeeff;
+  border: 1px solid #aaccee;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 11px;
+  max-width: 85%;
+  margin-left: auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.window-open {
+  animation: fadeIn 0.15s ease-out;
+}
+
+/* XP Logo colors */
+.xp-logo-red { color: #c0392b; }
+.xp-logo-green { color: #27ae60; }
+.xp-logo-blue { color: #2980b9; }
+.xp-logo-yellow { color: #f39c12; }
+
+/* Inset panel */
+.xp-inset {
+  border: 2px inset #d4d0c8;
+  background: #fff;
+}
+
+.xp-raised {
+  border: 2px outset #d4d0c8;
+}
+
+/* Tooltip */
+.xp-tooltip {
+  background: #ffffe1;
+  border: 1px solid #000;
+  font-size: 11px;
+  padding: 2px 4px;
+  position: absolute;
+  z-index: 99999;
+  pointer-events: none;
 }
