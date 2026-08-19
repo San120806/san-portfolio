@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import StartMenu from './StartMenu';
+import { en } from '@/data/i18n/en';
+import { hi } from '@/data/i18n/hi';
 
 interface TaskbarWindow {
   id: string;
@@ -18,16 +20,24 @@ interface TaskbarProps {
   startMenuOpen: boolean;
   onStartClick: () => void;
   onStartMenuClose: () => void;
+  lang: 'en' | 'hi';
+  onLangToggle: () => void;
+  soundEnabled: boolean;
+  onSoundToggle: () => void;
+  crtEnabled: boolean;
+  onCrtToggle: () => void;
+  onLogOff: () => void;
+  onShutDown: () => void;
 }
 
-// XP Windows logo SVG
+// 4-Color Windows XP Logo
 function XPLogo() {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22">
-      <path d="M0 5.5 L10 4 L10 11 L0 11 Z" fill="#e83030" />
-      <path d="M11 3.5 L22 2 L22 11 L11 11 Z" fill="#60b030" />
-      <path d="M0 12 L10 12 L10 19 L0 17.5 Z" fill="#2060d0" />
-      <path d="M11 12 L22 12 L22 21 L11 19.5 Z" fill="#e8b000" />
+    <svg width="20" height="20" viewBox="0 0 22 22" style={{ filter: 'drop-shadow(1px 1px 1px rgba(0,0,0,0.5))' }}>
+      <path d="M1 5.5 Q 6 3 10 4 L 10 11 L 1 11 Z" fill="#e83030" />
+      <path d="M11 3.8 Q 16 2.2 21 2.5 L 21 11 L 11 11 Z" fill="#60b030" />
+      <path d="M1 12 L 10 12 L 10 19 Q 5 18 1 16 Z" fill="#2060d0" />
+      <path d="M11 12 L 21 12 L 21 20.5 Q 16 19 11 17.5 Z" fill="#e8b000" />
     </svg>
   );
 }
@@ -39,43 +49,57 @@ export default function Taskbar({
   startMenuOpen,
   onStartClick,
   onStartMenuClose,
+  lang,
+  onLangToggle,
+  soundEnabled,
+  onSoundToggle,
+  crtEnabled,
+  onCrtToggle,
+  onLogOff,
+  onShutDown,
 }: TaskbarProps) {
-  const [time, setTime] = useState('');
-  const [date, setDate] = useState('');
+  const t = lang === 'hi' ? hi : en;
+  const [timeStr, setTimeStr] = useState('');
+  const [dateStr, setDateStr] = useState('');
 
   useEffect(() => {
-    const update = () => {
+    const updateTime = () => {
       const now = new Date();
-      const h = now.getHours().toString().padStart(2, '0');
-      const m = now.getMinutes().toString().padStart(2, '0');
-      setTime(`${h}:${m}`);
-      setDate(now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }));
+      setTimeStr(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+      setDateStr(now.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }));
     };
-    update();
-    const interval = setInterval(update, 1000);
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
       {startMenuOpen && (
-        <StartMenu onOpen={onOpenWindow} onClose={onStartMenuClose} />
+        <StartMenu
+          onOpen={onOpenWindow}
+          onClose={onStartMenuClose}
+          lang={lang}
+          onLogOff={onLogOff}
+          onShutDown={onShutDown}
+        />
       )}
+
       <div className="xp-taskbar">
-        {/* Start button */}
+        {/* Start Button */}
         <button
-          className="xp-start-btn"
+          className={`xp-start-btn ${startMenuOpen ? 'pressed' : ''}`}
           onClick={onStartClick}
         >
           <XPLogo />
-          <span>start</span>
+          <span>{t.system.start}</span>
         </button>
 
-        {/* Quick launch divider */}
-        <div style={{ width: 1, height: 28, background: 'rgba(255,255,255,0.2)', margin: '0 2px' }} />
+        {/* Quick Launch separator */}
+        <div style={{ width: 1, height: 26, background: 'rgba(255,255,255,0.25)', margin: '0 3px' }} />
 
-        {/* Window tasks */}
-        <div style={{ display: 'flex', gap: 2, flex: 1, overflow: 'hidden', padding: '0 4px' }}>
+        {/* Open Windows / Tasks List */}
+        <div style={{ display: 'flex', gap: 3, flex: 1, overflowX: 'auto', padding: '0 4px' }}>
           {windows.map(win => (
             <button
               key={win.id}
@@ -84,20 +108,46 @@ export default function Taskbar({
               title={win.title}
             >
               {win.icon && <span style={{ fontSize: 13 }}>{win.icon}</span>}
-              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: 11 }}>
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {win.title}
               </span>
             </button>
           ))}
         </div>
 
-        {/* System tray */}
+        {/* System Notification Tray */}
         <div className="xp-tray">
-          <span style={{ fontSize: 14 }}>🔊</span>
-          <span style={{ fontSize: 14 }}>📶</span>
-          <div className="xp-tray-clock">
-            <div style={{ fontWeight: 'bold' }}>{time}</div>
-            <div style={{ fontSize: 9 }}>{date}</div>
+          {/* CRT Monitor Toggle */}
+          <button
+            onClick={onCrtToggle}
+            title={crtEnabled ? 'Disable CRT Scanlines' : 'Enable CRT Scanlines'}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, opacity: crtEnabled ? 1 : 0.6 }}
+          >
+            📺
+          </button>
+
+          {/* Sound Toggle */}
+          <button
+            onClick={onSoundToggle}
+            title={soundEnabled ? 'Mute Audio' : 'Unmute Audio'}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13 }}
+          >
+            {soundEnabled ? '🔊' : '🔇'}
+          </button>
+
+          {/* Language Switcher */}
+          <button
+            onClick={onLangToggle}
+            className="xp-button"
+            title="Switch Language / भाषा बदलें"
+            style={{ padding: '1px 5px', fontSize: 10, fontWeight: 'bold' }}
+          >
+            {lang === 'en' ? 'EN' : 'हिन्दी'}
+          </button>
+
+          {/* Live Clock with Date Tooltip */}
+          <div className="xp-tray-clock" title={dateStr}>
+            {timeStr}
           </div>
         </div>
       </div>

@@ -36,27 +36,32 @@ export default function MessengerWindow({ lang = 'en', onOpenWindow, onNudgeTrig
   const botResponses: Record<string, { reply: string; actionWindow?: string }> = {
     projects: {
       reply: lang === 'hi'
-        ? "सानिया ने 5 प्रमुख परियोजनाएं बनाई हैं:\n1. BUILDTRACK — निर्माण ट्रैकर (Full Stack)\n2. DRIFT — पर्सनल ऑपरेशन्स (AI / Product)\n3. SMART TIMETABLE — AI शेड्यूलिंग\n4. URBANMOVE — क्लाउड राइड-शेयरिंग (AWS)\n5. MESCORA INTERIORS — इंटीरियर डिजाइन डिजिटल अनुभव\n\n'My Projects' विंडो खोल रहा हूँ...",
+        ? "सानिया ने 5 प्रमुख परियोजनाएं बनाई हैं:\n1. BUILDTRACK — निर्माण ट्रैकर (Full Stack)\n2. DRIFT — पर्सनल ऑपरेशन्स (AI / Product)\n3. SMART TIMETABLE — AI शेड्यूलिंग\n4. URBANMOVE — क्लाउड राइड-शेयरिंग (AWS)\n5. MESCORA INTERIORS — इंटीरियर डिजाइन डिजिटल अनुभव\n\n'My Projects' विंडो खोल रहा हूँ..."
+        : "Here are Saniya's key projects:\n1. BUILDTRACK — Construction Project Tracker (Full Stack)\n2. DRIFT — Personal Operations System (AI / Product)\n3. SMART TIMETABLE — AI Scheduling Platform\n4. URBANMOVE — Cloud Ride-Sharing (AWS)\n5. MESCORA INTERIORS — Interior Design Digital Experience\n\nOpening 'My Projects' window...",
       actionWindow: 'projects',
     },
     about: {
       reply: lang === 'hi'
-        ? "सानिया कापुरे ITM Skills University में B.Tech CS की छात्रा हैं, जो Full-Stack, AI और Cloud में विशेषज्ञ हैं।\n\n'About Me' विंडो खोल रहा हूँ...",
+        ? "सानिया कापुरे ITM Skills University में B.Tech CS की छात्रा हैं, जो Full-Stack, AI और Cloud में विशेषज्ञ हैं।\n\n'About Me' विंडो खोल रहा हूँ..."
+        : "Saniya Kapure is a Computer Science student at ITM Skills University specializing in Full-Stack development, AI interfaces, and Cloud systems.\n\nOpening 'About Me' window...",
       actionWindow: 'about',
     },
     resume: {
       reply: lang === 'hi'
-        ? "सानिया का बायोडाटा लोड किया जा रहा है...\n\n'My Resume' विंडो खोल रहा हूँ...",
+        ? "सानिया का बायोडाटा लोड किया जा रहा है...\n\n'My Resume' विंडो खोल रहा हूँ..."
+        : "Loading Saniya's resume document...\n\nOpening 'My Resume' window...",
       actionWindow: 'resume',
     },
     contact: {
       reply: lang === 'hi'
-        ? "आप सानिया से सीधे संपर्क कर सकते हैं!\n\n'Contact Me' विंडो खोल रहा हूँ...",
+        ? "आप सानिया से सीधे संपर्क कर सकते हैं!\n\n'Contact Me' विंडो खोल रहा हूँ..."
+        : "You can reach out directly to Saniya!\n\nOpening 'Contact Me' window...",
       actionWindow: 'contact',
     },
     skills: {
       reply: lang === 'hi'
-        ? "कौशल:\n• फ्रंटएंड: React, Next.js, TypeScript, Tailwind\n• बैकएंड: Node.js, FastAPI, Python, MongoDB, PostgreSQL\n• क्लाउड: AWS (EC2, S3, RDS, Lambda), Docker\n• AI: Embeddings, pgvector, Multi-Agent Workflows",
+        ? "कौशल:\n• फ्रंटएंड: React, Next.js, TypeScript, Tailwind\n• बैकएंड: Node.js, FastAPI, Python, MongoDB, PostgreSQL\n• क्लाउड: AWS (EC2, S3, RDS, Lambda), Docker\n• AI: Embeddings, pgvector, Multi-Agent Workflows"
+        : "Key Skills:\n• Frontend: React, Next.js, TypeScript, Tailwind CSS\n• Backend: Node.js, FastAPI, Python, MongoDB, PostgreSQL\n• Cloud: AWS (EC2, S3, RDS, Lambda), Docker\n• AI: Embeddings, pgvector, Multi-Agent Workflows",
     },
     github: {
       reply: "Check out Saniya's open source projects on GitHub: https://github.com/saniyakapure 🚀",
