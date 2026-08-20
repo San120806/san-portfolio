@@ -147,11 +147,11 @@ export default function AboutMeWindow({ lang = 'en', onOpenWindow }: AboutMeWind
             <span>{t.about.socialLinks}</span>
             <span>▼</span>
           </div>
-          <div style={{ padding: '4px 6px' }}>
+          <div style={{ padding: '4px 6px', display: 'flex', flexDirection: 'column', gap: 3 }}>
             {[
-              { name: 'GitHub', icon: '⚫', url: socialsData.github },
-              { name: 'LinkedIn', icon: '🔵', url: socialsData.linkedin },
-              { name: 'Instagram', icon: '📷', url: socialsData.instagram },
+              { name: 'GitHub', icon: '⚫', url: socialsData.github, handle: 'San120806' },
+              { name: 'LinkedIn', icon: '🔵', url: socialsData.linkedin, handle: 'saniyakapure' },
+              { name: 'Instagram', icon: '📷', url: socialsData.instagram, handle: '@saniya_kapure' },
             ].map(s => (
               <a
                 key={s.name}
@@ -159,10 +159,24 @@ export default function AboutMeWindow({ lang = 'en', onOpenWindow }: AboutMeWind
                 target="_blank"
                 rel="noopener noreferrer"
                 className="xp-menu-item"
-                style={{ fontSize: 11, textDecoration: 'none', color: '#0044bb', padding: '3px 4px' }}
+                title={`Open ${s.name} (${s.url})`}
+                style={{
+                  fontSize: 11,
+                  textDecoration: 'none',
+                  color: '#0044bb',
+                  padding: '4px 6px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  borderRadius: 3,
+                  cursor: 'pointer',
+                }}
               >
                 <span>{s.icon}</span>
-                <span className="underline hover:text-blue-800">{s.name}</span>
+                <div style={{ overflow: 'hidden' }}>
+                  <div className="underline hover:text-blue-800" style={{ fontWeight: 'bold' }}>{s.name}</div>
+                  <div style={{ fontSize: 9, color: '#666' }}>{s.handle}</div>
+                </div>
               </a>
             ))}
           </div>

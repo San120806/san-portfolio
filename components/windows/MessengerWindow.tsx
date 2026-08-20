@@ -64,7 +64,7 @@ export default function MessengerWindow({ lang = 'en', onOpenWindow, onNudgeTrig
         : "Key Skills:\n• Frontend: React, Next.js, TypeScript, Tailwind CSS\n• Backend: Node.js, FastAPI, Python, MongoDB, PostgreSQL\n• Cloud: AWS (EC2, S3, RDS, Lambda), Docker\n• AI: Embeddings, pgvector, Multi-Agent Workflows",
     },
     github: {
-      reply: "Check out Saniya's open source projects on GitHub: https://github.com/saniyakapure 🚀",
+      reply: "Check out Saniya's open source projects on GitHub: https://github.com/San120806 🚀",
     },
     hello: {
       reply: "Hey there! 👋 Nice to meet you. Ask me anything about Saniya's projects, skills, or background!",

@@ -6,8 +6,8 @@ export interface Socials {
 }
 
 export const socialsData: Socials = {
-  github: "https://github.com/saniyakapure",
-  linkedin: "https://linkedin.com/in/saniyakapure",
-  instagram: "https://instagram.com/saniyakapure",
-  email: "saniya@example.com",
+  github: "https://github.com/San120806",
+  linkedin: "https://www.linkedin.com/in/saniyakapure/",
+  instagram: "https://www.instagram.com/saniya_kapure/",
+  email: "saniyakapure12@gmail.com",
 };
