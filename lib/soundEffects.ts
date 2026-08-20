@@ -27,8 +27,32 @@ class SoundManager {
     return this.isMuted;
   }
 
-  // Windows XP Startup Chord
+  // Authentic Windows XP Startup Sound
   public playStartup() {
+    if (this.isMuted) return;
+
+    if (typeof window !== 'undefined') {
+      try {
+        const audio = new Audio('/Microsoft Windows XP Startup Sound.mp3');
+        audio.volume = 0.8;
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            this.playSynthesizedStartup();
+          });
+        }
+        return;
+      } catch {
+        this.playSynthesizedStartup();
+        return;
+      }
+    }
+
+    this.playSynthesizedStartup();
+  }
+
+  // Synthesized fallback
+  public playSynthesizedStartup() {
     if (this.isMuted) return;
     const ctx = this.getContext();
     if (!ctx) return;

@@ -21,19 +21,15 @@ html, body {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #1b68d6 0%, #3e8cee 35%, #76bcfd 60%, #43a42d 61%, #2e8b1d 75%, #1e6612 100%);
+  background: #000000 url('/icons/bliss_wallpaper.jpeg') center center / cover no-repeat;
 }
 
-/* CSS Illustrated Bliss Landscape with soft clouds and hill horizon */
+/* Bliss Landscape Background */
 .xp-bliss-landscape {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: 
-    radial-gradient(ellipse 90% 50% at 50% 100%, #2f8e17 0%, #206d0e 50%, transparent 80%),
-    radial-gradient(ellipse 60% 30% at 20% 90%, #3ca822 0%, transparent 70%),
-    radial-gradient(ellipse 70% 35% at 85% 85%, #35981d 0%, transparent 70%),
-    linear-gradient(180deg, #1958ba 0%, #3682ea 30%, #68abf7 52%, #8bc2fa 58%, #4ba32e 62%, #2d8919 80%, #1e6211 100%);
+  background: url('/icons/bliss_wallpaper.jpeg') center center / cover no-repeat;
 }
 
 /* Subtle Saniya XP Cut Lettering Effect on Grass */
@@ -550,4 +546,33 @@ html, body {
 
 .window-open {
   animation: fadeIn 0.15s ease-out;
+}
+
+/* XP Boot Screen Animated 3-Block Progress Bar */
+.xp-boot-anim {
+  width: 28px;
+  height: 8px;
+  position: absolute;
+  top: 2px;
+  left: -32px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #5aa7f8 0px,
+    #2572e0 4px,
+    #134ea8 7px,
+    transparent 7px,
+    transparent 9px
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(50, 140, 255, 0.9);
+  animation: xp-boot-slide 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes xp-boot-slide {
+  0% {
+    left: -32px;
+  }
+  100% {
+    left: 172px;
+  }
 }

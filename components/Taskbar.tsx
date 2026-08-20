@@ -107,7 +107,13 @@ export default function Taskbar({
               onClick={() => onWindowClick(win.id)}
               title={win.title}
             >
-              {win.icon && <span style={{ fontSize: 13 }}>{win.icon}</span>}
+              {win.icon && (
+                win.icon.startsWith('/') ? (
+                  <img src={win.icon} alt="" style={{ width: 14, height: 14, objectFit: 'contain' }} />
+                ) : (
+                  <span style={{ fontSize: 13 }}>{win.icon}</span>
+                )
+              )}
               <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {win.title}
               </span>

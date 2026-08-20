@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Taskbar from '@/components/Taskbar';
 import XPWindow from '@/components/XPWindow';
 import BootScreen from '@/components/boot/BootScreen';
+import WelcomeScreen from '@/components/boot/WelcomeScreen';
 import LoginScreen from '@/components/boot/LoginScreen';
 import ShutdownDialog from '@/components/dialogs/ShutdownDialog';
 import AboutMeWindow from '@/components/windows/AboutMeWindow';
@@ -33,8 +34,8 @@ interface WindowState {
 }
 
 export default function Home() {
-  // OS Life Cycle States
-  const [osState, setOsState] = useState<'boot' | 'login' | 'desktop' | 'turned-off'>('boot');
+  // OS Life Cycle States: boot -> welcome -> desktop
+  const [osState, setOsState] = useState<'boot' | 'welcome' | 'login' | 'desktop' | 'turned-off'>('boot');
   const [shutdownModalOpen, setShutdownModalOpen] = useState(false);
   const [startMenuOpen, setStartMenuOpen] = useState(false);
 
@@ -68,22 +69,17 @@ export default function Home() {
     },
   ]);
 
-  // Handle auto-boot skip for returning visitors
-  useEffect(() => {
-    const hasBooted = sessionStorage.getItem('saniya_xp_booted');
-    if (hasBooted) {
-      setOsState('desktop');
-    }
-  }, []);
-
   const handleBootComplete = () => {
-    sessionStorage.setItem('saniya_xp_booted', 'true');
     setOsState('login');
   };
 
-  const handleLogin = () => {
+  const handleWelcomeComplete = () => {
     if (soundEnabled) soundManager.playStartup();
     setOsState('desktop');
+  };
+
+  const handleLogin = () => {
+    setOsState('welcome');
   };
 
   const handleLogOff = () => {
@@ -123,7 +119,7 @@ export default function Home() {
     // Default metadata by ID
     const metaMap: Record<string, { title: string; icon: string; width: number; height: number; defaultX: number; defaultY: number }> = {
       projects: { title: `${t.desktop.myProjects} - Internet Explorer`, icon: '🌐', width: 800, height: 530, defaultX: 80, defaultY: 30 },
-      about: { title: `${t.desktop.aboutMe} - Explorer`, icon: '👤', width: 720, height: 490, defaultX: 110, defaultY: 50 },
+      about: { title: `${t.desktop.aboutMe} - Explorer`, icon: '/icons/aboutme.png', width: 820, height: 560, defaultX: 90, defaultY: 35 },
       resume: { title: `${t.desktop.myResume} - Adobe Reader`, icon: '📄', width: 700, height: 540, defaultX: 130, defaultY: 40 },
       contact: { title: `${t.desktop.contactMe} - Outlook Express`, icon: '✉️', width: 640, height: 440, defaultX: 150, defaultY: 70 },
       messenger: { title: `${t.desktop.saniyaBot} - Windows Messenger`, icon: '💬', width: 440, height: 480, defaultX: 200, defaultY: 60 },
@@ -240,7 +236,7 @@ export default function Home() {
   // Desktop Icons Configuration
   const desktopIcons = [
     { id: 'projects', label: t.desktop.myProjects, icon: '🌐' },
-    { id: 'about', label: t.desktop.aboutMe, icon: '👤' },
+    { id: 'about', label: t.desktop.aboutMe, icon: '👤', iconImage: '/icons/aboutme.png' },
     { id: 'resume', label: t.desktop.myResume, icon: '📄' },
     { id: 'contact', label: t.desktop.contactMe, icon: '✉️' },
     { id: 'messenger', label: t.desktop.saniyaBot, icon: '💬' },
@@ -286,12 +282,18 @@ export default function Home() {
     return <BootScreen onComplete={handleBootComplete} />;
   }
 
+  // Welcome sequence
+  if (osState === 'welcome') {
+    return <WelcomeScreen onComplete={handleWelcomeComplete} />;
+  }
+
   // Login sequence
   if (osState === 'login') {
     return (
       <LoginScreen
         onLogin={handleLogin}
         lang={lang}
+        onRestart={handleRestart}
         onShutDown={() => setShutdownModalOpen(true)}
       />
     );
@@ -310,13 +312,8 @@ export default function Home() {
         setContextMenu({ x: e.clientX, y: e.clientY });
       }}
     >
-      {/* CSS Bliss Sky & Grass Hills Background */}
+      {/* Bliss Landscape Background */}
       <div className="xp-bliss-landscape" />
-
-      {/* Saniya XP 3D Cut Grass Lettering */}
-      <div className="xp-grass-branding">
-        SANIYA XP
-      </div>
 
       {/* Desktop Icons Column (Left aligned, vertically stacked) */}
       <div style={{
@@ -364,7 +361,15 @@ export default function Home() {
               fontSize: 28,
               filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.6))',
             }}>
-              {icon.icon}
+              {icon.iconImage ? (
+                <img
+                  src={icon.iconImage}
+                  alt={icon.label}
+                  style={{ width: 38, height: 38, objectFit: 'contain' }}
+                />
+              ) : (
+                icon.icon
+              )}
             </div>
             <span>{icon.label}</span>
           </div>

@@ -25,7 +25,7 @@ export default function StartMenu({ onOpen, onClose, lang, onLogOff, onShutDown 
   const primaryLeft = [
     { id: 'projects', label: t.desktop.myProjects, icon: '🌐', desc: 'Explore portfolio applications' },
     { id: 'resume', label: t.desktop.myResume, icon: '📄', desc: 'View PDF / Document resume' },
-    { id: 'about', label: t.desktop.aboutMe, icon: '👤', desc: 'Bio, skills & background' },
+    { id: 'about', label: t.desktop.aboutMe, icon: '/icons/aboutme.png', desc: 'Bio, skills & background' },
     { id: 'contact', label: t.desktop.contactMe, icon: '✉️', desc: 'Send an email message' },
     { id: 'messenger', label: t.desktop.saniyaBot, icon: '💬', desc: 'Interactive chat assistant' },
   ];
@@ -55,10 +55,16 @@ export default function StartMenu({ onOpen, onClose, lang, onLogOff, onShutDown 
           background: 'linear-gradient(135deg, #4a80d4, #1a50a0)',
           border: '2px solid #ffcc00',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 22, flexShrink: 0,
+          flexShrink: 0,
+          overflow: 'hidden',
+          position: 'relative',
           boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
         }}>
-          👩‍💻
+          <img
+            src="/icons/saniya_avatar.png"
+            alt={profileData.name}
+            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 2 }}
+          />
         </div>
         <div>
           <div className="xp-start-menu-name">{profileData.name}</div>
@@ -86,7 +92,11 @@ export default function StartMenu({ onOpen, onClose, lang, onLogOff, onShutDown 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 16, flexShrink: 0,
               }}>
-                {item.icon}
+                {item.icon.startsWith('/') ? (
+                  <img src={item.icon} alt={item.label} style={{ width: 22, height: 22, objectFit: 'contain' }} />
+                ) : (
+                  item.icon
+                )}
               </div>
               <div style={{ overflow: 'hidden' }}>
                 <div style={{ fontWeight: 'bold', fontSize: 11, color: '#111' }}>{item.label}</div>

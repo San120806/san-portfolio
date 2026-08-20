@@ -1,9 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { profileData } from '@/data/profile';
 import { socialsData } from '@/data/socials';
 import { en } from '@/data/i18n/en';
 import { hi } from '@/data/i18n/hi';
+import TechnicalEcosystem from '@/components/TechnicalEcosystem';
 
 interface AboutMeWindowProps {
   lang?: 'en' | 'hi';
@@ -12,6 +14,7 @@ interface AboutMeWindowProps {
 
 export default function AboutMeWindow({ lang = 'en', onOpenWindow }: AboutMeWindowProps) {
   const t = lang === 'hi' ? hi : en;
+  const [selectedSection, setSelectedSection] = useState<'all' | 'bio' | 'ecosystem' | 'community'>('all');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#ffffff' }}>
@@ -54,7 +57,7 @@ export default function AboutMeWindow({ lang = 'en', onOpenWindow }: AboutMeWind
       <div className="xp-addressbar">
         <span style={{ fontSize: 11, color: '#555', flexShrink: 0 }}>{t.system.address}</span>
         <div style={{ display: 'flex', alignItems: 'center', background: 'white', border: '2px inset #7f9db9', flex: 1, padding: '1px 6px' }}>
-          <span style={{ fontSize: 11, color: '#222' }}>C:\Documents and Settings\Saniya\About Me</span>
+          <span style={{ fontSize: 11, color: '#222' }}>C:\Documents and Settings\Saniya\About Me\Technical Ecosystem</span>
         </div>
         <button className="xp-button" style={{ padding: '1px 8px', fontSize: 11 }}>Go</button>
       </div>
@@ -63,6 +66,82 @@ export default function AboutMeWindow({ lang = 'en', onOpenWindow }: AboutMeWind
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Left Explorer Sidebar */}
         <div className="xp-sidebar-panel" style={{ overflowY: 'auto' }}>
+          {/* Navigation Panel */}
+          <div className="xp-sidebar-section-header">
+            <span>Explorer Tasks</span>
+            <span>▼</span>
+          </div>
+          <div style={{ padding: '4px 6px', display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <button
+              onClick={() => setSelectedSection('all')}
+              className="xp-menu-item"
+              style={{
+                width: '100%',
+                textAlign: 'left',
+                background: selectedSection === 'all' ? 'rgba(0, 80, 200, 0.15)' : 'none',
+                border: 'none',
+                fontWeight: selectedSection === 'all' ? 'bold' : 'normal',
+                color: selectedSection === 'all' ? '#003399' : '#111',
+                padding: '4px 6px',
+                borderRadius: 3,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 11,
+              }}
+            >
+              <span>📁</span>
+              <span>Full Portfolio View</span>
+            </button>
+            <button
+              onClick={() => setSelectedSection('ecosystem')}
+              className="xp-menu-item"
+              style={{
+                width: '100%',
+                textAlign: 'left',
+                background: selectedSection === 'ecosystem' ? 'rgba(0, 80, 200, 0.15)' : 'none',
+                border: 'none',
+                fontWeight: selectedSection === 'ecosystem' ? 'bold' : 'normal',
+                color: selectedSection === 'ecosystem' ? '#003399' : '#111',
+                padding: '4px 6px',
+                borderRadius: 3,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 11,
+              }}
+            >
+              <span>⚡</span>
+              <span>Technical Ecosystem</span>
+            </button>
+            <button
+              onClick={() => setSelectedSection('bio')}
+              className="xp-menu-item"
+              style={{
+                width: '100%',
+                textAlign: 'left',
+                background: selectedSection === 'bio' ? 'rgba(0, 80, 200, 0.15)' : 'none',
+                border: 'none',
+                fontWeight: selectedSection === 'bio' ? 'bold' : 'normal',
+                color: selectedSection === 'bio' ? '#003399' : '#111',
+                padding: '4px 6px',
+                borderRadius: 3,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 11,
+              }}
+            >
+              <span>👤</span>
+              <span>Bio & Story</span>
+            </button>
+          </div>
+
+          <div style={{ height: 1, background: '#b0c0e0', margin: '4px 0' }} />
+
           {/* Social Links Panel */}
           <div className="xp-sidebar-section-header">
             <span>{t.about.socialLinks}</span>
@@ -87,48 +166,6 @@ export default function AboutMeWindow({ lang = 'en', onOpenWindow }: AboutMeWind
               </a>
             ))}
           </div>
-
-          <div style={{ height: 1, background: '#b0c0e0', margin: '4px 0' }} />
-
-          {/* Skills Panel */}
-          <div className="xp-sidebar-section-header">
-            <span>{t.about.skills}</span>
-            <span>▼</span>
-          </div>
-          <div style={{ padding: '6px 8px', display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {[
-              { skill: 'Frontend Dev', color: '#0066cc' },
-              { skill: 'Full-Stack Dev', color: '#008844' },
-              { skill: 'UI/UX Design', color: '#aa00aa' },
-              { skill: 'React & Next.js', color: '#0066cc' },
-              { skill: 'TypeScript', color: '#0055aa' },
-              { skill: 'FastAPI / Python', color: '#dd6600' },
-              { skill: 'AWS Cloud', color: '#d97706' },
-              { skill: 'AI Workflows', color: '#8800cc' },
-              { skill: 'MongoDB / Postgres', color: '#008844' },
-            ].map(item => (
-              <div key={item.skill} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11 }}>
-                <span style={{ color: item.color, fontSize: 10 }}>●</span>
-                <span>{item.skill}</span>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ height: 1, background: '#b0c0e0', margin: '4px 0' }} />
-
-          {/* Tools Panel */}
-          <div className="xp-sidebar-section-header">
-            <span>{t.about.software}</span>
-            <span>▼</span>
-          </div>
-          <div style={{ padding: '6px 8px', display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {profileData.skills.tools.map(tool => (
-              <div key={tool} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11 }}>
-                <span style={{ color: '#666', fontSize: 10 }}>■</span>
-                <span>{tool}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Right Content */}
@@ -144,82 +181,102 @@ export default function AboutMeWindow({ lang = 'en', onOpenWindow }: AboutMeWind
           </div>
 
           {/* Bio section with avatar badge */}
-          <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: 18 }}>
-            <div style={{
-              width: 64, height: 64, borderRadius: 8,
-              background: 'linear-gradient(135deg, #4a80d4, #1a50a0)',
-              border: '2px solid #1a3880',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 28, flexShrink: 0,
-              boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-            }}>
-              👩‍💻
-            </div>
-            <div>
-              <h2 style={{ fontSize: 14, fontWeight: 'bold', color: '#222', margin: '0 0 6px' }}>
-                {t.about.introHeading}
-              </h2>
-              <p style={{ fontSize: 12, lineHeight: 1.6, color: '#333', margin: 0 }}>
-                {t.about.introP1}
-              </p>
-            </div>
-          </div>
+          {(selectedSection === 'all' || selectedSection === 'bio') && (
+            <>
+              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: 18 }}>
+                <div style={{
+                  width: 64, height: 64, borderRadius: 8,
+                  background: 'linear-gradient(135deg, #4a80d4, #1a50a0)',
+                  border: '2px solid #1a3880',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                  overflow: 'hidden',
+                  position: 'relative',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                }}>
+                  <img
+                    src="/icons/saniya_avatar.png"
+                    alt={profileData.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 2 }}
+                  />
+                </div>
+                <div>
+                  <h2 style={{ fontSize: 14, fontWeight: 'bold', color: '#222', margin: '0 0 6px' }}>
+                    {t.about.introHeading}
+                  </h2>
+                  <p style={{ fontSize: 12, lineHeight: 1.6, color: '#333', margin: 0 }}>
+                    {t.about.introP1}
+                  </p>
+                </div>
+              </div>
 
-          {/* Story & Philosophy */}
-          <div style={{
-            background: '#f4f8ff',
-            border: '1px solid #c2d8ff',
-            borderRadius: 6,
-            padding: '12px 16px',
-            marginBottom: 18,
-            fontSize: 12,
-            lineHeight: 1.6,
-          }}>
-            <p style={{ margin: 0, color: '#222' }}>
-              {t.about.introP2}
-            </p>
-          </div>
+              {/* Story & Philosophy */}
+              <div style={{
+                background: '#f4f8ff',
+                border: '1px solid #c2d8ff',
+                borderRadius: 6,
+                padding: '12px 16px',
+                marginBottom: 18,
+                fontSize: 12,
+                lineHeight: 1.6,
+              }}>
+                <p style={{ margin: 0, color: '#222' }}>
+                  {t.about.introP2}
+                </p>
+              </div>
+            </>
+          )}
+
+          {/* Interactive Technical Ecosystem Section */}
+          {(selectedSection === 'all' || selectedSection === 'ecosystem') && (
+            <TechnicalEcosystem />
+          )}
 
           {/* Interests & Domains */}
-          <div style={{ marginBottom: 18 }}>
-            <h3 style={{ fontSize: 13, fontWeight: 'bold', color: '#0047ba', marginBottom: 8, borderBottom: '1px solid #eee', paddingBottom: 4 }}>
-              {t.about.interestsHeading}
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 8 }}>
-              {profileData.bio.interests.map(item => (
-                <div key={item} style={{
-                  background: '#f8f8f8',
-                  border: '1px solid #ddd',
-                  padding: '6px 10px',
-                  borderRadius: 4,
-                  fontSize: 11,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}>
-                  <span style={{ color: '#0047ba' }}>✦</span>
-                  <span>{item}</span>
-                </div>
-              ))}
+          {(selectedSection === 'all' || selectedSection === 'bio') && (
+            <div style={{ marginBottom: 18 }}>
+              <h3 style={{ fontSize: 13, fontWeight: 'bold', color: '#0047ba', marginBottom: 8, borderBottom: '1px solid #eee', paddingBottom: 4 }}>
+                {t.about.interestsHeading}
+              </h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 8 }}>
+                {profileData.bio.interests.map(item => (
+                  <div key={item} style={{
+                    background: '#f8f8f8',
+                    border: '1px solid #ddd',
+                    padding: '6px 10px',
+                    borderRadius: 4,
+                    fontSize: 11,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                  }}>
+                    <span style={{ color: '#0047ba' }}>✦</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Community & Leadership */}
-          <div style={{
-            background: '#fff9e6',
-            border: '1px solid #f0d080',
-            borderRadius: 6,
-            padding: '12px 16px',
-            fontSize: 12,
-            lineHeight: 1.5,
-          }}>
-            <div style={{ fontWeight: 'bold', color: '#996600', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span>🏆</span> {t.about.communityHeading}
+          {(selectedSection === 'all' || selectedSection === 'community') && (
+            <div style={{
+              background: '#fff9e6',
+              border: '1px solid #f0d080',
+              borderRadius: 6,
+              padding: '12px 16px',
+              fontSize: 12,
+              lineHeight: 1.5,
+              marginBottom: 14,
+            }}>
+              <div style={{ fontWeight: 'bold', color: '#996600', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span>🏆</span> {t.about.communityHeading}
+              </div>
+              <p style={{ margin: 0, color: '#443300' }}>
+                {t.about.communityText}
+              </p>
             </div>
-            <p style={{ margin: 0, color: '#443300' }}>
-              {t.about.communityText}
-            </p>
-          </div>
+          )}
         </div>
       </div>
 

@@ -89,7 +89,13 @@ export default function XPWindow({
           onDoubleClick={handleToggleMaximize}
         >
           <div className="xp-titlebar-left">
-            {icon && <span style={{ fontSize: 13, marginRight: 4 }}>{icon}</span>}
+            {icon && (
+              icon.startsWith('/') ? (
+                <img src={icon} alt="" style={{ width: 16, height: 16, objectFit: 'contain', marginRight: 4 }} />
+              ) : (
+                <span style={{ fontSize: 13, marginRight: 4 }}>{icon}</span>
+              )
+            )}
             <span className="xp-titlebar-title">{title}</span>
           </div>
 
